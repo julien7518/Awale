@@ -1,5 +1,4 @@
-class CoupImpossible(Exception):
-    pass
+from exception import CoupImpossible
 
 
 class Awale(object):
@@ -9,7 +8,7 @@ class Awale(object):
         self.joueur = 0
         self.fin = False
 
-    def enCours(self) -> None:
+    def actualiseEtat(self) -> None:
         """_summary_
 
         _extended_summary_
@@ -19,6 +18,7 @@ class Awale(object):
         elif sum(self.plateau) < 3:
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
+            self.fin = True
 
     def coupsPossibles(self) -> list:
         """_summary_
@@ -57,7 +57,6 @@ class Awale(object):
         :param depart: Case jouee par le joueur
         :type depart: int 
         """
-
         if depart in self.coupsPossibles():
             graines_restantes = self.plateau[depart]
             position = (depart + 1) % 12
@@ -69,6 +68,7 @@ class Awale(object):
                     self.plateau[position] += 1
                     graines_restantes = graines_restantes - 1
                 position = (position + 1) % 12
+            self.plateau[depart] = 0
 
             if self.joueur == 0:
                 cases_adversaire = self.plateau[6:]
@@ -91,3 +91,13 @@ class Awale(object):
 
         else:
             raise CoupImpossible
+
+    def affichePlateau(self):
+        print(" "*5 + str(self.score[1]) + " "*5)
+        for i in range(11, 5, -1):
+            print(self.plateau[i], end=" ")
+        print()
+        for i in range(0, 6):
+            print(self.plateau[i], end=" ")
+        print()
+        print(" "*5 + str(self.score[0]) + " "*5)

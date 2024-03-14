@@ -1,4 +1,5 @@
-/Include/*
-/Scripts/*
-/Lib/*
 pyvenv.cfg
+__pycache__
+Include
+Lib
+Scripts

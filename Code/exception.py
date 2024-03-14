@@ -1,0 +1,2 @@
+class CoupImpossible(Exception):
+    pass
