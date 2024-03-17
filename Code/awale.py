@@ -70,10 +70,10 @@ class Awale(object):
             self.plateau[depart] = 0
 
             if self.joueur == 0:
-                indice_cases_adversaire = [i for i in range(6,13)] 
-                derniere_case_adv = 6        
+                indice_cases_adversaire = [i for i in range(6, 13)]
+                derniere_case_adv = 6
             else:
-                indice_cases_adversaire =[i for i in range(0,7)]
+                indice_cases_adversaire = [i for i in range(0, 7)]
                 derniere_case_adv = 0
 
             # Pas le droit d'affamer l'adversaire avec des prises
@@ -81,21 +81,19 @@ class Awale(object):
                 if self.plateau[i] != 2 or self.plateau[i] != 3:
                     future_famine = False
 
-            position = (position-1)%12 #Pour partir du trou dans laquelle la derniere graine a été posée
+            # Pour partir du trou dans laquelle la derniere graine a été posée
+            position = (position-1) % 12
 
-
-            while not(future_famine) and (position in indice_cases_adversaire) and (self.plateau[position] == 2 or self.plateau[position] == 3):
-
+            while not (future_famine) and (position in indice_cases_adversaire) and (self.plateau[position] == 2 or self.plateau[position] == 3):
                 self.score[self.joueur] += self.plateau[position]
                 self.plateau[position] = 0
                 position = (position - 1) % 12
-
             self.joueur = 1 - self.joueur
 
         else:
             raise CoupImpossible
 
-    def affichePlateau(self):
+    def affichePlateau(self) -> None:
         print(" "*5 + str(self.score[1]) + " "*5)
         for i in range(11, 5, -1):
             print(self.plateau[i], end=" ")
