@@ -9,9 +9,9 @@ class Awale(object):
         self.fin = False
 
     def actualiseEtat(self) -> None:
-        """_summary_
+        """Actualiser la fin de jeu.
 
-        _extended_summary_
+        Permet d'analyser le plateau et de déterminer si le la partie est finie.
         """
         if self.coupsPossibles() == []:
             self.fin = True
@@ -21,11 +21,9 @@ class Awale(object):
             self.fin = True
 
     def coupsPossibles(self) -> list:
-        """_summary_
+        """Calculer les coups acceptables.
 
-        _extended_summary_
-
-        :return: Renvoie la liste des indices jouables
+        :return: Liste des indices jouables
         :rtype: list
         """
         liste_coups = []
@@ -49,11 +47,11 @@ class Awale(object):
         return liste_coups
 
     def joue(self, depart: int) -> None:
-        """_summary_
+        """Jouer un coup.
 
-        _extended_summary_
+        Permet de jouer un coup, en prenant `depart` comme trou à vider et répartissant les graines sur les trous suivants.
 
-        :param depart: Case jouee par le joueur
+        :param depart: Case jouée par le joueur
         :type depart: int 
         """
         if depart in self.coupsPossibles():
@@ -94,6 +92,7 @@ class Awale(object):
             raise CoupImpossible
 
     def affichePlateau(self) -> None:
+        """Affiche le plateau dans un terminal"""
         print(" "*5 + str(self.score[1]) + " "*5)
         for i in range(11, 5, -1):
             print(self.plateau[i], end=" ")
