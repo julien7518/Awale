@@ -1,6 +1,5 @@
 from exception import CoupImpossible
 
-
 class Awale(object):
     def __init__(self) -> None:
         self.plateau = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
@@ -8,12 +7,15 @@ class Awale(object):
         self.joueur = 0
         self.fin = False
 
+        
     def actualiseEtat(self) -> None:
         """Actualiser la fin de jeu.
 
         Permet d'analyser le plateau et de déterminer si le la partie est finie.
         """
         if self.coupsPossibles() == []:
+            self.score[0] += sum(self.plateau[:6])
+            self.score[1] += sum(self.plateau[6:])
             self.fin = True
         elif sum(self.plateau) < 3:
             self.score[0] += sum(self.plateau[:6])
@@ -54,6 +56,7 @@ class Awale(object):
         :param depart: Case jouée par le joueur
         :type depart: int 
         """
+        print(self.coupsPossibles())
         if depart in self.coupsPossibles():
             graines_restantes = self.plateau[depart]
             position = (depart + 1) % 12
@@ -101,3 +104,18 @@ class Awale(object):
             print(self.plateau[i], end=" ")
         print()
         print(" "*5 + str(self.score[0]) + " "*5)
+
+if __name__ == "__main__":
+    jeu = Awale()
+    while not jeu.fin:
+        jeu.affichePlateau()
+        print(f"Joueur {jeu.joueur + 1}, c'est votre tour.")
+        coup = int(input("Entrez le numéro de la case à jouer (0-11): "))
+        try:
+            jeu.joue(coup)
+            jeu.actualiseEtat()
+        except CoupImpossible:
+            print("Coup impossible, essayez à nouveau.")
+    print("Jeu terminé!")
+    jeu.affichePlateau()
+    print(f"Score final - Joueur 1: {jeu.score[0]}, Joueur 2: {jeu.score[1]}")
