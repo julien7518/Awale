@@ -104,18 +104,3 @@ class Awale(object):
             print(self.plateau[i], end=" ")
         print()
         print(" "*5 + str(self.score[0]) + " "*5)
-
-if __name__ == "__main__":
-    jeu = Awale()
-    while not jeu.fin:
-        jeu.affichePlateau()
-        print(f"Joueur {jeu.joueur + 1}, c'est votre tour.")
-        coup = int(input("Entrez le numéro de la case à jouer (0-11): "))
-        try:
-            jeu.joue(coup)
-            jeu.actualiseEtat()
-        except CoupImpossible:
-            print("Coup impossible, essayez à nouveau.")
-    print("Jeu terminé!")
-    jeu.affichePlateau()
-    print(f"Score final - Joueur 1: {jeu.score[0]}, Joueur 2: {jeu.score[1]}")
