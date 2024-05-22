@@ -1,6 +1,13 @@
 from awale import Awale
 from typing import Optional
 from exception import CoupImpossible
+import sys
+from ..Robot.minmax import minMax
+
+def utilise_minMax():
+    resultat = minMax()
+    print(resultat)
+
 import typer
 
 cli = typer.Typer(no_args_is_help=True, add_completion=False, context_settings={"help_option_names": ["--help", "-h"]})
@@ -59,19 +66,26 @@ def joueShell() -> None:
     """
     jeu = Awale()
     while not jeu.fin:
-        jeu.affichePlateau()
-        try:
-            case = input("Entrez le trou choisi : ")
-            if case == ".quit":
-                raise typer.Exit()
-            else:
-                case = int(case)
+        if jeu.joueur == 0:
+            jeu.affichePlateau()
             try:
-                jeu.joue(case-1)
-            except CoupImpossible:
-                print("Tu t'es trompé de trou chef ! Fais attention la prochaine fois")
-        except ValueError:
-            print("Veuillez saisir un nombre entre 1 et 12")
+                case = int(input("Entrez le trou choisi : ")) #Mettre un string a la place d un int fait changer le tour 
+                if case == ".quit":
+                    raise typer.Exit()
+                else:
+                    case = int(case)
+                try:
+                    jeu.joue(case-1)
+                except CoupImpossible:
+                    print("Tu t'es trompé de trou chef ! Fais attention la prochaine fois")
+            except ValueError:
+                print("Veuillez saisir un nombre entre 1 et 12")
+        else: 
+            print("Tour de l'IA...")
+            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=False)
+            jeu.joue(meilleur_coup)
+            print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
+
         jeu.actualiseEtat()
 
 if __name__ == "__main__":
