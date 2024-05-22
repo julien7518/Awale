@@ -1,4 +1,4 @@
-from ..Jeu.awale import Awale
+from awale import Awale
 import sys, copy
 from typing import Callable
 import random 
@@ -44,7 +44,8 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
         return None,evaluation(jeu.plateau,joueuramaximiser)
     if joueuramaximiser: 
         resultat = - sys.maxsize
-        meilleur_coup = random.choice(Awale.coupsPossibles) #VERIF SI PAS D ERREUR ICI 
+        liste_coup_pos = jeu.coupsPossibles()
+        meilleur_coup = random.choice(liste_coup_pos) #VERIF SI PAS D ERREUR ICI 
         for i in range(6, 12):
             copie = copy.deepcopy(jeu)
             copie.joue(i)
@@ -60,7 +61,8 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
     # Minimisateur
     else:
         resultat = sys.maxsize
-        meilleur_coup = random.choice(Awale.coupsPossibles)
+        liste_coup_pos = jeu.coupsPossibles()
+        meilleur_coup = random.choice(liste_coup_pos) #VERIF SI PAS D ERREUR ICI 
         for i in range(6):
             copie = copy.deepcopy(jeu)
             copie.joue(i)
