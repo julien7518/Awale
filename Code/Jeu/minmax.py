@@ -10,15 +10,15 @@ def evaluation(jeu: Awale, joueur_actuel : int):
     # Nombres de cases qui peuvent etre prises a l avantage du joueur d indice i 
     prises_pos = [0,0]
     for i in range(4,8):
-        if (Awale.plateau(i) == 1) or (Awale.plateau(i) == 2):
+        if (jeu.plateau[i] == 1) or (jeu.plateau[i] == 2):
             prises_pos[1] += 1 
 
     for i in range(0,4):
-        if (Awale.plateau(i) == 1) or (Awale.plateau(i) == 2):
+        if (jeu.plateau[i] == 1) or (jeu.plateau[i] == 2):
             prises_pos[0] += 1 
         
 
-    total = 2*(Awale.score[joueur_actuel]) + prises_pos[joueur_actuel] - 2*(Awale.score[1-joueur_actuel]) + prises_pos[1-joueur_actuel] 
+    total = 2*(jeu.score[joueur_actuel]) + prises_pos[joueur_actuel] - 2*(jeu.score[1-joueur_actuel]) + prises_pos[1-joueur_actuel] 
     return total
 
 
@@ -41,18 +41,21 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
     :rtype: tuple[int, int]
     """
     if (profondeur == 0) or jeu.fin:
-        return None,evaluation(jeu.plateau,joueuramaximiser)
+        return None,evaluation(jeu,joueuramaximiser)
+    # Maximisateur
     if joueuramaximiser: 
         resultat = - sys.maxsize
         liste_coup_pos = jeu.coupsPossibles()
-        meilleur_coup = random.choice(liste_coup_pos) #VERIF SI PAS D ERREUR ICI 
-        for i in range(6, 12):
+        if liste_coup_pos == []:
+            return None,evaluation(jeu,joueuramaximiser)
+        meilleur_coup = random.choice(liste_coup_pos) 
+        for i in liste_coup_pos:
             copie = copy.deepcopy(jeu)
             copie.joue(i)
             nouveau_res = minMax(copie, profondeur-1, alpha, beta, False)[1]
             if nouveau_res > resultat:
                 resultat = nouveau_res
-                meilleur_coup = i 
+                meilleur_coup = i
             del(copie)
             if beta <= resultat:
                 return meilleur_coup,resultat
@@ -62,14 +65,16 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
     else:
         resultat = sys.maxsize
         liste_coup_pos = jeu.coupsPossibles()
+        if liste_coup_pos == []:
+            return None,evaluation(jeu,joueuramaximiser)
         meilleur_coup = random.choice(liste_coup_pos) #VERIF SI PAS D ERREUR ICI 
-        for i in range(6):
+        for i in liste_coup_pos:
             copie = copy.deepcopy(jeu)
             copie.joue(i)
             nouveau_res = minMax(copie, profondeur-1, alpha, beta, True)[1]
             if nouveau_res < resultat:
                 resultat = nouveau_res
-                meilleur_coup = i 
+                meilleur_coup = i
             del(copie)
             if alpha >= resultat:
                 return meilleur_coup,resultat

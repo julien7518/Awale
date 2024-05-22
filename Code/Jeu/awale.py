@@ -21,6 +21,10 @@ class Awale(object):
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
+        if self.fin == True:
+            print("Fin de partie :")
+            print("Le gagnant est","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2")
+
 
     def coupsPossibles(self) -> list:
         """Calculer les coups acceptables.
@@ -56,7 +60,6 @@ class Awale(object):
         :param depart: Case jouée par le joueur
         :type depart: int 
         """
-        print(self.coupsPossibles())
         if depart in self.coupsPossibles():
             graines_restantes = self.plateau[depart]
             position = (depart + 1) % 12
@@ -90,7 +93,7 @@ class Awale(object):
                 self.plateau[position] = 0
                 position = (position - 1) % 12
             self.joueur = 1 - self.joueur
-
+        
         else:
             raise CoupImpossible
 

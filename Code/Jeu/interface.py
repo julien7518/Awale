@@ -78,7 +78,7 @@ def joueShell() -> None:
                 print("Veuillez saisir un nombre entre 1 et 12")
         else: 
             print("Tour de l'IA...")
-            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=False)
+            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
             jeu.joue(meilleur_coup)
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
 
