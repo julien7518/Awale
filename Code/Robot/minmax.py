@@ -1,12 +1,11 @@
 from ..Jeu.awale import Awale
 import sys, copy
 from typing import Callable
+import random 
 
 # Faire s'affronter methode Monte - Carlo vs MinMax et comparer les % de victoires
 # Refaire avec d autres comparaisons avec des fonctions d evaluation et profondeur pour le MinMax
 def evaluation(jeu: Awale, joueur_actuel : int):
-    coups_pos = Awale.coupsPossibles()
-    print(coups_pos)
 
     # Nombres de cases qui peuvent etre prises a l avantage du joueur d indice i 
     prises_pos = [0,0]
@@ -23,9 +22,6 @@ def evaluation(jeu: Awale, joueur_actuel : int):
     return total
 
 
-
-
-
 def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser : bool):
     """Calculer une position.
 
@@ -39,35 +35,42 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
     :type alpha: int
     :param beta: Valeur de beta
     :type beta: int
-    :param evaluation: Fonction d'évaluation d'une position
-    :type evaluation: Callable[[list[int]], int]
-    :return: Valeur d'évaluation du noeud
-    :rtype: int
+    :param joueuramaximiser: Booléen indiquant si c'est le joueur à maximiser
+    :type joueuramaximiser: bool
+    :return: Tuple contenant le meilleur coup et la valeur d'évaluation du noeud
+    :rtype: tuple[int, int]
     """
     if (profondeur == 0) or jeu.fin:
-        return evaluation(jeu.plateau)
-    # Maximisateur
-    if jeu.joueur:
+        return None,evaluation(jeu.plateau,joueuramaximiser)
+    if joueuramaximiser: 
         resultat = - sys.maxsize
+        meilleur_coup = random.choice(Awale.coupsPossibles) #VERIF SI PAS D ERREUR ICI 
         for i in range(6, 12):
             copie = copy.deepcopy(jeu)
             copie.joue(i)
-            resultat = max(resultat, minMax(copie, profondeur-1, alpha, beta, True))
+            nouveau_res = minMax(copie, profondeur-1, alpha, beta, False)[1]
+            if nouveau_res > resultat:
+                resultat = nouveau_res
+                meilleur_coup = i 
             del(copie)
             if beta <= resultat:
-                return resultat
+                return meilleur_coup,resultat
             alpha = max(alpha, resultat)
     
     # Minimisateur
     else:
         resultat = sys.maxsize
+        meilleur_coup = random.choice(Awale.coupsPossibles)
         for i in range(6):
             copie = copy.deepcopy(jeu)
             copie.joue(i)
-            resultat = min(resultat, minMax(copie, profondeur-1, alpha, beta, False))
+            nouveau_res = minMax(copie, profondeur-1, alpha, beta, True)[1]
+            if nouveau_res < resultat:
+                resultat = nouveau_res
+                meilleur_coup = i 
             del(copie)
             if alpha >= resultat:
-                return resultat
+                return meilleur_coup,resultat
             beta = min(beta, resultat)
 
-    return resultat
+    return meilleur_coup,resultat
