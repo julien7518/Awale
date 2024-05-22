@@ -2,7 +2,7 @@ from awale import Awale
 from typing import Optional
 from exception import CoupImpossible
 import sys
-from ..Robot.minmax import minMax
+from minmax import minMax
 
 import typer
 
@@ -52,7 +52,7 @@ def joueGui() -> None:
     """
     print("In progress...")
 
-@cli.command("shell")
+@cli.command("shell_IA")
 def joueShell() -> None:
     """Jouer dans le terminal.
 
