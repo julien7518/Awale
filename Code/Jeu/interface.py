@@ -4,10 +4,6 @@ from exception import CoupImpossible
 import sys
 from ..Robot.minmax import minMax
 
-def utilise_minMax():
-    resultat = minMax()
-    print(resultat)
-
 import typer
 
 cli = typer.Typer(no_args_is_help=True, add_completion=False, context_settings={"help_option_names": ["--help", "-h"]})
