@@ -39,7 +39,7 @@ def simulation_jeu(nombre_de_partie : int) -> list:
         resultats.append(resultat)
     return resultats
 
-def sauvegarder_resultats(resultats,nom_fichier):
+def sauvegarder_resultats(resultats, nom_fichier):
     with open(nom_fichier,'w') as f:
         json.dump(resultats,f,indent=4)
 
@@ -48,5 +48,3 @@ if __name__ == "__main__":
     nombre_parties = 10
     resultats = simulation_jeu(nombre_parties)
     sauvegarder_resultats(resultats,'resultats_test.json')
-
-

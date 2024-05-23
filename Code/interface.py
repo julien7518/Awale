@@ -2,9 +2,9 @@ from awale import Awale
 from typing import Optional
 from exception import CoupImpossible
 import sys
-from minmax import minMax
+import minmax
+import fct_evalution
 import random 
-
 import typer
 
 cli = typer.Typer(no_args_is_help=True, add_completion=False, context_settings={"help_option_names": ["--help", "-h"]})
@@ -17,7 +17,8 @@ def _version_callback(value: bool) -> None:
     if value:
         typer.echo("1.0.0")
         raise typer.Exit()
-    
+
+
 def _credits_callback(value: bool) -> None:
     """Affiche les crédits du projet.
 
@@ -26,6 +27,7 @@ def _credits_callback(value: bool) -> None:
     if value:
         typer.echo("Sarusan Nithiyarajan - Julien Fernandes\nAwale 2024-2025 ©️")
         raise typer.Exit()
+
 
 @cli.callback()
 def main(version: Optional[bool] = typer.Option(
@@ -45,6 +47,7 @@ def main(version: Optional[bool] = typer.Option(
     ) -> None:
     pass
 
+
 @cli.command("GUI")
 def joueGui() -> None:
     """Jouer avec une interface.
@@ -52,6 +55,7 @@ def joueGui() -> None:
     Permet de jouer à l'awale dans une fenêtre externe avec interface graphique.
     """
     print("In progress...")
+
 
 @cli.command("shell_IA")
 def joueShell() -> None:
@@ -79,12 +83,14 @@ def joueShell() -> None:
                 print("Veuillez saisir un nombre entre 1 et 12")
         else: 
             print("Tour de l'IA...")
-            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            meilleur_coup, _ = minmax.minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=fct_evaluation.evaluation)
             jeu.joue(meilleur_coup)
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
 
         jeu.actualiseEtat()
-@cli.command("shell_Humains")
+
+
+@cli.command("shell_Humain")
 def joueShell_h() -> None:
     """Jouer dans le terminal.
 
@@ -122,16 +128,16 @@ def joueShell_i() -> None:
     while not jeu.fin:
         if jeu.joueur == 0:
             print("Tour de l'IA 1...")
-            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            meilleur_coup, _ = minmax.minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=fct_evaluation.evaluation)
             jeu.joue(meilleur_coup)
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
         else: 
             print("Tour de l'IA 2...")
-            meilleur_coup, _ = minMax(jeu, profondeur=3, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            meilleur_coup, _ = minmax.minMax(jeu, profondeur=3, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=fct_evaluation.evaluation)
             jeu.joue(meilleur_coup)
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
 
-        
+
         jeu.actualiseEtat()
         jeu.affichePlateau()
 
@@ -146,11 +152,10 @@ def joueShell_r() -> None:
     jeu = Awale()
     while not jeu.fin:
         if jeu.joueur == 0:
-            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            meilleur_coup, _ = minmax.minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=fct_evaluation.evaluation)
             jeu.joue(meilleur_coup)
-        else: 
-            liste_coups_pos = jeu.coupsPossibles()
-            jeu.joue(random.choice(liste_coups_pos))
+        else:
+            jeu.joue(random.choice(jeu.coupsPossibles()))
         
         jeu.actualiseEtat()
 

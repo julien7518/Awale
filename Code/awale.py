@@ -2,13 +2,13 @@ from exception import CoupImpossible
 
 class Awale(object):
     def __init__(self) -> None:
-        self.plateau = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
-        self.score = [0, 0]
-        self.joueur = 0
-        self.fin = False
-        self.tour = 0
+        self.plateau: list[int] = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+        self.score: list[int] = [0, 0]
+        self.joueur: int = 0
+        self.fin: bool = False
+        self.tour: int = 0
 
-        
+
     def actualiseEtat(self) -> None:
         """Actualiser la fin de jeu.
 
@@ -110,3 +110,9 @@ class Awale(object):
             print(self.plateau[i], end=" ")
         print()
         print(" "*5 + str(self.score[0]) + " "*5)
+
+    def __str__(self):
+        return "Utilisez la méthode affichePlateau() pour afficher le jeu"
+
+    def __repr__(self):
+        return "Utilisez la méthode affichePlateau() pour afficher le jeu"

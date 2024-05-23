@@ -1,28 +1,10 @@
 from awale import Awale
 import sys, copy
-from typing import Callable
+from typing import Tuple, Callable, Optional
 import random 
 
-# Faire s'affronter methode Monte - Carlo vs MinMax et comparer les % de victoires
-# Refaire avec d autres comparaisons avec des fonctions d evaluation et profondeur pour le MinMax
-def evaluation(jeu: Awale, joueur_actuel : int):
 
-    # Nombres de cases qui peuvent etre prises a l avantage du joueur d indice i 
-    prises_pos = [0,0]
-    for i in range(4,8):
-        if (jeu.plateau[i] == 1) or (jeu.plateau[i] == 2):
-            prises_pos[1] += 1 
-
-    for i in range(0,4):
-        if (jeu.plateau[i] == 1) or (jeu.plateau[i] == 2):
-            prises_pos[0] += 1 
-        
-
-    total = 2*(jeu.score[joueur_actuel]) + prises_pos[joueur_actuel] - 2*(jeu.score[1-joueur_actuel]) + prises_pos[1-joueur_actuel] 
-    return total
-
-
-def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser : bool):
+def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser: bool, eval: Callable[[Awale, int], int]) -> Tuple[Optional[int], int]:
     """Calculer une position.
 
     Permet de calculer un plateau en se basant sur un algorithme MinMax qui évalue l'arbre des possibilités.
@@ -38,16 +20,16 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
     :param joueuramaximiser: Booléen indiquant si c'est le joueur à maximiser
     :type joueuramaximiser: bool
     :return: Tuple contenant le meilleur coup et la valeur d'évaluation du noeud
-    :rtype: tuple[int, int]
+    :rtype: tuple[Optional[int],int]
     """
     if (profondeur == 0) or jeu.fin:
-        return None,evaluation(jeu,joueuramaximiser)
+        return None, fct_eval(jeu,joueuramaximiser)
     # Maximisateur
-    if joueuramaximiser: 
+    if joueuramaximiser:
         resultat = - sys.maxsize
         liste_coup_pos = jeu.coupsPossibles()
         if liste_coup_pos == []:
-            return None,evaluation(jeu,joueuramaximiser)
+            return None, fct_eval(jeu,joueuramaximiser)
         meilleur_coup = random.choice(liste_coup_pos) 
         for i in liste_coup_pos:
             copie = copy.deepcopy(jeu)
@@ -58,7 +40,7 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
                 meilleur_coup = i
             del(copie)
             if beta <= resultat:
-                return meilleur_coup,resultat
+                return meilleur_coup, resultat
             alpha = max(alpha, resultat)
     
     # Minimisateur
@@ -66,7 +48,7 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
         resultat = sys.maxsize
         liste_coup_pos = jeu.coupsPossibles()
         if liste_coup_pos == []:
-            return None,evaluation(jeu,joueuramaximiser)
+            return None, fct_eval(jeu,joueuramaximiser)
         meilleur_coup = random.choice(liste_coup_pos) 
         for i in liste_coup_pos:
             copie = copy.deepcopy(jeu)
@@ -77,7 +59,7 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
                 meilleur_coup = i
             del(copie)
             if alpha >= resultat:
-                return meilleur_coup,resultat
+                return meilleur_coup, resultat
             beta = min(beta, resultat)
 
-    return meilleur_coup,resultat
+    return meilleur_coup, resultat
