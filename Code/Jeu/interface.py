@@ -121,7 +121,7 @@ def joueShell_i() -> None:
     while not jeu.fin:
         if jeu.joueur == 0:
             print("Tour de l'IA 1...")
-            meilleur_coup, _ = minMax(jeu, profondeur=10, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
             jeu.joue(meilleur_coup)
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
         else: 
