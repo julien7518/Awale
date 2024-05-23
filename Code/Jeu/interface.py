@@ -3,6 +3,7 @@ from typing import Optional
 from exception import CoupImpossible
 import sys
 from minmax import minMax
+import random 
 
 import typer
 
@@ -65,7 +66,7 @@ def joueShell() -> None:
         if jeu.joueur == 0:
             jeu.affichePlateau()
             try:
-                case = input("Entrez le trou choisi : ") #Mettre un string a la place d un int fait changer le tour 
+                case = input("Entrez le trou choisi : ") 
                 if case == ".quit":
                     raise typer.Exit()
                 else:
@@ -109,7 +110,7 @@ def joueShell_h() -> None:
 
     jeu.actualiseEtat()
 
-@cli.command("shell_IAvsIA")
+@cli.command("shell_IAvsIA") #Pas d'interet de se faire battre 2 min_max avec profondeur diff car c'est tjrs exactement le meme match mais utile pour voir quelle est la meilleure fonction d evaluation
 def joueShell_i() -> None:
     """Jouer dans le terminal.
 
@@ -133,6 +134,26 @@ def joueShell_i() -> None:
         
         jeu.actualiseEtat()
         jeu.affichePlateau()
+
+@cli.command("shell_IAvsRandom")
+def joueShell_r() -> None:
+    """Jouer dans le terminal.
+
+    Permet de jouer à l'awale dans le terminal, avec une interface simple.
+
+    :raises typer.Exit: Quitte l'application.
+    """
+    jeu = Awale()
+    while not jeu.fin:
+        if jeu.joueur == 0:
+            meilleur_coup, _ = minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            jeu.joue(meilleur_coup)
+        else: 
+            liste_coups_pos = jeu.coupsPossibles()
+            jeu.joue(random.choice(liste_coups_pos))
+        
+        jeu.actualiseEtat()
+
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ class Awale(object):
         self.score = [0, 0]
         self.joueur = 0
         self.fin = False
+        self.tour = 0
 
         
     def actualiseEtat(self) -> None:
@@ -22,9 +23,10 @@ class Awale(object):
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
         if self.fin == True:
-            print("Fin de partie :")
-            print("Le gagnant est","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2")
-
+            print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",
+                  "Score:",self.score[0],"-",self.score[1],
+                  "Tours:",self.tour)
+            
 
     def coupsPossibles(self) -> list:
         """Calculer les coups acceptables.
@@ -93,6 +95,7 @@ class Awale(object):
                 self.plateau[position] = 0
                 position = (position - 1) % 12
             self.joueur = 1 - self.joueur
+            self.tour = self.tour + 1
         
         else:
             raise CoupImpossible
