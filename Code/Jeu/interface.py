@@ -109,5 +109,31 @@ def joueShell_h() -> None:
 
     jeu.actualiseEtat()
 
+@cli.command("shell_IAvsIA")
+def joueShell_i() -> None:
+    """Jouer dans le terminal.
+
+    Permet de jouer à l'awale dans le terminal, avec une interface simple.
+
+    :raises typer.Exit: Quitte l'application.
+    """
+    jeu = Awale()
+    while not jeu.fin:
+        if jeu.joueur == 0:
+            print("Tour de l'IA 1...")
+            meilleur_coup, _ = minMax(jeu, profondeur=10, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            jeu.joue(meilleur_coup)
+            print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
+        else: 
+            print("Tour de l'IA 2...")
+            meilleur_coup, _ = minMax(jeu, profondeur=3, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True)
+            jeu.joue(meilleur_coup)
+            print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
+
+        
+        jeu.actualiseEtat()
+        jeu.affichePlateau()
+
+
 if __name__ == "__main__":
     cli()
