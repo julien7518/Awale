@@ -67,7 +67,7 @@ def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser 
         liste_coup_pos = jeu.coupsPossibles()
         if liste_coup_pos == []:
             return None,evaluation(jeu,joueuramaximiser)
-        meilleur_coup = random.choice(liste_coup_pos) #VERIF SI PAS D ERREUR ICI 
+        meilleur_coup = random.choice(liste_coup_pos) 
         for i in liste_coup_pos:
             copie = copy.deepcopy(jeu)
             copie.joue(i)

@@ -17,7 +17,7 @@ class Awale(object):
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
-        elif sum(self.plateau) < 3:
+        elif sum(self.plateau) <= 5:
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True

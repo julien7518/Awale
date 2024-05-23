@@ -95,7 +95,7 @@ def joueShell_h() -> None:
     while not jeu.fin:
         jeu.affichePlateau()
         try:
-            case = input("Entrez le trou choisi : ") #Mettre un string a la place d un int fait changer le tour 
+            case = input("Entrez le trou choisi : ") 
             if case == ".quit":
                 raise typer.Exit()
             else:
