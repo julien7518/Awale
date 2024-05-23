@@ -65,7 +65,7 @@ def joueShell() -> None:
         if jeu.joueur == 0:
             jeu.affichePlateau()
             try:
-                case = int(input("Entrez le trou choisi : ")) #Mettre un string a la place d un int fait changer le tour 
+                case = input("Entrez le trou choisi : ") #Mettre un string a la place d un int fait changer le tour 
                 if case == ".quit":
                     raise typer.Exit()
                 else:
@@ -83,6 +83,31 @@ def joueShell() -> None:
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
 
         jeu.actualiseEtat()
+@cli.command("shell_Humains")
+def joueShell_h() -> None:
+    """Jouer dans le terminal.
+
+    Permet de jouer à l'awale dans le terminal, avec une interface simple.
+
+    :raises typer.Exit: Quitte l'application.
+    """
+    jeu = Awale()
+    while not jeu.fin:
+        jeu.affichePlateau()
+        try:
+            case = input("Entrez le trou choisi : ") #Mettre un string a la place d un int fait changer le tour 
+            if case == ".quit":
+                raise typer.Exit()
+            else:
+                case = int(case)
+            try:
+                jeu.joue(case-1)
+            except CoupImpossible:
+                print("Tu t'es trompé de trou chef ! Fais attention la prochaine fois")
+        except ValueError:
+            print("Veuillez saisir un nombre entre 1 et 12")
+
+    jeu.actualiseEtat()
 
 if __name__ == "__main__":
     cli()
