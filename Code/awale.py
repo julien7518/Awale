@@ -1,3 +1,4 @@
+from typing import Optional
 from exception import CoupImpossible
 
 class Awale(object):
@@ -6,13 +7,16 @@ class Awale(object):
         self.score: list[int] = [0, 0]
         self.joueur: int = 0
         self.fin: bool = False
-        self.tour: int = 0
+        self.tours: int = 0
 
 
-    def actualiseEtat(self) -> None:
+    def actualiseEtat(self, printIt: Optional[bool] = True) -> None:
         """Actualiser la fin de jeu.
 
         Permet d'analyser le plateau et de déterminer si le la partie est finie.
+
+        :param printIt: Permet de choisir si l'on doit afficher le résultat ou non
+        :type printIt: Optional[bool]
         """
         if self.coupsPossibles() == []:
             self.score[0] += sum(self.plateau[:6])
@@ -22,10 +26,10 @@ class Awale(object):
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
-#        if self.fin == True:
-#            print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",
-#                  "Score:",self.score[0],"-",self.score[1],
-#                  "Tours:",self.tour)
+        if (self.fin == True) and printIt:
+            print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",
+                  "Score:",self.score[0],"-",self.score[1],
+                  "Tours:",self.tours)
             
 
     def coupsPossibles(self) -> list:
@@ -95,7 +99,7 @@ class Awale(object):
                 self.plateau[position] = 0
                 position = (position - 1) % 12
             self.joueur = 1 - self.joueur
-            self.tour = self.tour + 1
+            self.tours = self.tours + 1
         
         else:
             raise CoupImpossible

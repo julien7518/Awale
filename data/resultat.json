@@ -1,0 +1,74 @@
+[
+    {
+        "simID": 1,
+        "date": "24-05-2024 20:47:07",
+        "ia": "MinMax",
+        "optimisation": "elagage alpha-beta",
+        "fonction": "evaluation",
+        "profondeur": 3,
+        "nbrSimulation": 100,
+        "temps_sec": 79.23136258125305,
+        "temps_format": "0:01:19.231363",
+        "resultat": {
+            "minmaxVictoire": 36,
+            "randomVictoire": 64,
+            "minmaxScore": 17.47,
+            "randomScore": 30.53,
+            "tours": 393.84
+        }
+    },
+    {
+        "simID": 2,
+        "date": "24-05-2024 20:48:23",
+        "ia": "MinMax",
+        "optimisation": "elagage alpha-beta",
+        "fonction": "evaluation",
+        "profondeur": 4,
+        "nbrSimulation": 100,
+        "temps_sec": 75.75630569458008,
+        "temps_format": "0:01:15.756306",
+        "resultat": {
+            "minmaxVictoire": 36,
+            "randomVictoire": 64,
+            "minmaxScore": 17.65,
+            "randomScore": 30.35,
+            "tours": 382.81
+        }
+    },
+    {
+        "simID": 3,
+        "date": "24-05-2024 20:49:38",
+        "ia": "MinMax",
+        "optimisation": "elagage alpha-beta",
+        "fonction": "evaluation",
+        "profondeur": 5,
+        "nbrSimulation": 100,
+        "temps_sec": 74.98090505599976,
+        "temps_format": "0:01:14.980905",
+        "resultat": {
+            "minmaxVictoire": 41,
+            "randomVictoire": 59,
+            "minmaxScore": 19.72,
+            "randomScore": 28.28,
+            "tours": 376.94
+        }
+    },
+    {
+        "simID": 4,
+        "date": "24-05-2024 20:50:59",
+        "ia": "MinMax",
+        "optimisation": "elagage alpha-beta",
+        "fonction": "evaluation",
+        "profondeur": 6,
+        "nbrSimulation": 100,
+        "temps_sec": 80.8901116847992,
+        "temps_format": "0:01:20.890112",
+        "resultat": {
+            "minmaxVictoire": 30,
+            "randomVictoire": 70,
+            "minmaxScore": 14.98,
+            "randomScore": 33.02,
+            "tours": 415.86
+        }
+    }
+]
