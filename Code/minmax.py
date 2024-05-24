@@ -2,6 +2,8 @@ from awale import Awale
 import sys, copy
 from typing import Tuple, Callable, Optional
 import random
+import random 
+from fct_evalution import evaluation as fct_eval
 
 def minMax(jeu: Awale, profondeur: int, alpha: int, beta: int, joueuramaximiser: bool, eval: Callable[[Awale, int], int]) -> Tuple[Optional[int], int]:
     """Calculer une position.
