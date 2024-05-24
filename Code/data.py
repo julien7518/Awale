@@ -100,5 +100,5 @@ def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale
     with open(chemin_fichier, 'w') as fichier:
         json.dump(data, fichier, indent=4)
 
-for i in range(3, 7):
-    extractMinmaxRandom(nbr_sim=100, profondeur=i, fct_eval=fct_evalution.evaluation)
+for i in range(3, 10):
+    extractMinmaxRandom(nbr_sim=1000, profondeur=i, fct_eval=fct_evalution.evaluation)
