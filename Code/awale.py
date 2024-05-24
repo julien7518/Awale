@@ -22,10 +22,10 @@ class Awale(object):
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
-        if self.fin == True:
-            print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",
-                  "Score:",self.score[0],"-",self.score[1],
-                  "Tours:",self.tour)
+#        if self.fin == True:
+#            print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",
+#                  "Score:",self.score[0],"-",self.score[1],
+#                  "Tours:",self.tour)
             
 
     def coupsPossibles(self) -> list:
@@ -83,14 +83,14 @@ class Awale(object):
                 derniere_case_adv = 0
 
             # Pas le droit d'affamer l'adversaire avec des prises
-            for i in range(position, derniere_case_adv, -1):
+            for i in range(position-1, derniere_case_adv, -1):
                 if self.plateau[i] != 2 or self.plateau[i] != 3:
                     future_famine = False
 
             # Pour partir du trou dans laquelle la derniere graine a été posée
             position = (position-1) % 12
 
-            while not (future_famine) and (position in indice_cases_adversaire) and (self.plateau[position] == 2 or self.plateau[position] == 3):
+            while (future_famine) and (position in indice_cases_adversaire) and (self.plateau[position] == 2 or self.plateau[position] == 3):
                 self.score[self.joueur] += self.plateau[position]
                 self.plateau[position] = 0
                 position = (position - 1) % 12

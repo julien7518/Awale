@@ -8,6 +8,7 @@ import random
 # partieFinie ? (2 pour joueurArbre a gagné, 1 s'il a perdu, 0 si la partie n'est pas finie), dernier trou joué]
 
 #  {"partie": jeu, "simTot": 1, "simVic": 0}
+#  dict[Awale, int, int]
 
 global probaExplo
 probaExplo = 0.5
