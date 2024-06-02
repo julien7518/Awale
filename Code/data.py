@@ -3,11 +3,11 @@ from typing import Callable
 import minmax, fct_evalution
 import random, sys, json, time, datetime
 
-def partieRM(eval: Callable[[Awale, int], int]) -> list[int]:
+def partieRM(p: int, eval: Callable[[Awale, int], int]) -> list[int]:
     jeu = Awale()
     while not jeu.fin:
         if jeu.joueur == 0:
-            meilleur_coup, _ = minmax.minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=eval)
+            meilleur_coup, _ = minmax.minMax(jeu, profondeur=p, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=eval)
             jeu.joue(meilleur_coup)
         else:
             jeu.joue(random.choice(jeu.coupsPossibles()))
@@ -30,18 +30,28 @@ def simulationRM(k: int, p: int, eval: Callable[[Awale, int], int]) -> list[int]
     :type eval: Callable[[Awale,int],int]
     """
     debut = time.time()
-    res = [0, 0, 0, 0, 0] # [victoire 1, victoire 2, score moyen 1, score moyen 2, tours moyen, temps d'exécution (append après)]
+    res = [0, 0, 0, 0, 0, 0, 0] # [victoire 1, victoire 2, score moyen 1, score moyen 2, tours moyen, temps d'exécution (append après), tours moyen victoire, tours moyen defaites]
 
     for i in range(k):
-        partie = partieRM(eval)
-        res[partie[0]] += 1
-        res[2] += partie[1]
-        res[3] += partie[2]
-        res[4] += partie[3]
+        partie = partieRM(p, eval)
+        print(k)
+        if partie!=None:
+            gagnant = partie[0]
+            res[partie[0]] += 1
+            res[2] += partie[1]
+            res[3] += partie[2]
+            res[4] += partie[3]
+            if gagnant == 0:
+                res[5] += partie[3]
+            else:
+                res[6] += partie[3]
+
     
     for i in range(2, 5):
         res[i] = res[i] / k
-    
+    res[5] = res[5] / res[0]
+    if res[1]!=0:
+        res[6] = res[6] / res[1]    
     total = time.time() - debut
     res.append(total)
 
@@ -91,7 +101,9 @@ def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale
             "randomVictoire": res[1],
             "minmaxScore": res[2],
             "randomScore": res[3],
-            "tours": res[4]
+            "tours": res[4],
+            "toursVictoireIA":res[5],
+            "toursDefaiteIA":res[6]
         }
     }
 
@@ -100,5 +112,6 @@ def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale
     with open(chemin_fichier, 'w') as fichier:
         json.dump(data, fichier, indent=4)
 
-for i in range(3, 10):
-    extractMinmaxRandom(nbr_sim=1000, profondeur=i, fct_eval=fct_evalution.evaluation)
+for i in range(6,100):
+    print(i)
+    extractMinmaxRandom(nbr_sim=1000, profondeur=i, fct_eval=fct_evalution.ev)
