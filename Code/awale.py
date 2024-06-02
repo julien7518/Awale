@@ -26,17 +26,19 @@ class Awale(object):
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
+        elif self.joueur[0] >= 25 or self.joueur[1] >= 25:
+            self.fin = True
         if (self.fin == True) and printIt:
             print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",
                   "Score:",self.score[0],"-",self.score[1],
                   "Tours:",self.tours)
             
 
-    def coupsPossibles(self) -> list:
+    def coupsPossibles(self) -> list[int]:
         """Calculer les coups acceptables.
 
         :return: Liste des indices jouables
-        :rtype: list
+        :rtype: list[int]
         """
         liste_coups = []
         famine_adversaire = True

@@ -36,7 +36,7 @@ class Noeud(object):
         self.fils.append(Arbre(donnees=donnees, parent=self))
 
 
-def meilleurFils(a : Noeud) -> Noeud | None:
+def meilleurFils(a : Noeud) -> Optional[Noeud]:
     """Renvoie le fils ayant le meilleur ratio de victoire par rapport au nombre de simulation
 
     :param a: Le noeud dans lequel on doit choisir le fils
