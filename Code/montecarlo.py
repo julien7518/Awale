@@ -1,18 +1,14 @@
 from awale import Awale
 import sys, copy
 from typing import Tuple, Optional
-import random 
+import random, math
 
 
-#Noeud : [partie, scores, simulations victorieuses, simulations totales, personne devant jouer,
-# partieFinie ? (2 pour joueurArbre a gagné, 1 s'il a perdu, 0 si la partie n'est pas finie), dernier trou joué]
+# Structure des données stockées dans chaque Noeud
+#  {"partie": jeu, "simTot": 1, "simVic": 0} : dict[Awale, int, int]
 
-#  {"partie": jeu, "simTot": 1, "simVic": 0}
-#  dict[Awale, int, int]
-
-global probaExplo
-probaExplo = 0.5
-
+global p_exploration
+p_exploration = math.sqrt(2) # Valeur théorique (meilleur résultat avec une valeur expérimentale)
 
 class Noeud(object):
     """Classe d'un arbre
@@ -36,57 +32,39 @@ class Noeud(object):
         self.fils.append(Arbre(donnees=donnees, parent=self))
 
 
-def meilleurFils(a : Noeud) -> Optional[Noeud]:
-    """Renvoie le fils ayant le meilleur ratio de victoire par rapport au nombre de simulation
+def UCT(a: Noeud, fils: Noeud) -> int:
+    """Calcul le score basé sur la formule UCT
 
-    :param a: Le noeud dans lequel on doit choisir le fils
+    :param a: Père du noeud
     :type a: Noeud
-    :return: Renvoie le fils s'il existe
-    :rtype: Noeud|None
+    :param fils: Fils duquel on veit calculer le score
+    :type fils: Noeud
+    :return: Score UCT basé sur UCB1
+    :rtype: int
     """
-    meilleurRatio = -1.0
-    meilleurChoix = None
-    for noeud in a.fils:
-        if (noeud.donnees["simTot"] != 0):
-            ratio = noeud.donnees["simVic"]/noeud.donnees["simTot"]
-            if (ratio >= meilleurRatio):
-                meilleurRatio = ratio
-                meilleurChoix = noeud
-    
-    return meilleurChoix
+    return (fils.donnees["simVic"] / fils.donnees["simTot"]) + (p_exploration * math.sqrt(math.log2(a.donnees["simTot"]) / fils.donnees["simTot"]))
 
-def selection(a: Noeud):
+def selection(a: Noeud, f: Callable[[Noeud, Noeud], int]) -> Tuple[Noeud, int]:
     """Phase de sélection dans l'algorithme de Monte-Carlo
 
     :param a: L'arbre sur lequel on recherche
     :type a: Noeud
+    :param f: Fonction à utiliser pour choisir le fils
+    :type f: Callable[[Noeud,Noeud],int]
+    :return: Le noeud choisit avec son score correspondant (ou -1 si racine choisit et donc pas de score)
+    :rtype: Tuple[Noeud,int]
     """
-    resultat = a
-    noeud = a
-    # Tant qu'il y a des fils on continue
-    while(a.fils != []):
-        valeur_aleatoire = random.random()
-        mFils = meilleurFils(a)
-        joueur = a.donnees["partie"].joueur
-        # On choisit d'expandre un fils ou de regarder un autre fils
-        if (valeur_aleatoire <= probaExplo): # !Faire attention problème avec le joueur 
-            resultat = mFils
-        else:
-            # Choisir uniformément pour prendre un autre fils ou en créer un
-            valeur_aleatoire = random.random()
-            if (valeur_aleatoire <= 1/len(a.fils)):
-                # On créer un nouveau fils seulement s'il exsite (partie qui donne un nouvelle état de plateau)
-                if (len(noeud.donnees["partie"].coupsPossibles) == len(a.fils)):
-                    # Ce n'est pas possible
-                    resultat = random.choice(a.fils)
-                else:
-                    # C'est possible
-                    for coup in noeud.donnees["partie"].coupsPossibles:
-                        copie = copy.deepcopy(noeud.donnees["partie"])
-                        copie.joue(coup)
-                        for enfant in a.fils:
+    choix = a
+    score = -1.0
+    while choix.fils != []:
+        for fils in a.fils:
+            scoreFils = f(a, fils)
+            if scoreFils > score:
+                score = scoreFils
+                choix = fils
+        return choix, score
 
-
+# A revoir
 def expansion(a: Noeud) -> int:
     """Permet de créer un nouveau fils si c'est possible
 
@@ -106,7 +84,7 @@ def expansion(a: Noeud) -> int:
         return coup
 
 
-def simulation(a: Noeud) -> int:
+def simulationRandom(a: Noeud) -> int:
     """Simule une partie aléatoire
 
     :param a: Noeud à partir du quel on doit simuler
@@ -133,11 +111,7 @@ def retropopagation(a: Noeud, victoire: bool) -> None:
     :param victoire: Indique s'il y a eu une victoire au bout de la simulation
     :type victoire: bool
     """
-    if victoire:
-        vic = 1
-    else:
-        vic = 0
     while a.pere is not None:
         a.donnees["simTot"] += 1
-        a.donnees["simVic"] += vic
+        a.donnees["simVic"] += (1 if victoire else 0)
         a = a.pere

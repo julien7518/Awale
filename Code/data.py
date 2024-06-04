@@ -3,20 +3,22 @@ from typing import Callable
 import minmax, fct_evalution
 import random, sys, json, time, datetime
 
-def partieRM(p: int, eval: Callable[[Awale, int], int]) -> list[int]:
+def partieRM(p: int, eval: Callable[[Awale, int], int], optiAB: bool) -> list[int]:
     """Simule une partie entre un joueur aléatoire et MinMax
     
     :param p: Profondeur de la recherche dans un arbre MinMax
     :type p: int
     :param eval: Fonction d'évaluation à utiliser
     :type eval: Callable[[Awale,int],int]
+    :param optiAB: Utiliser Alpha-Bêta
+    :type optiAB: bool
     :return: Liste de la forme `[gagnant (0 si MinMax 1 sinon), score de MinMax, score de Random, tours joués]`
     :rtype: list[int]
     """
     jeu = Awale()
     while not jeu.fin:
         if jeu.joueur == 0:
-            meilleur_coup, _ = minmax.minMax(jeu, profondeur=p, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=eval)
+            meilleur_coup, _ = minmax.minMax(jeu, profondeur=p, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=eval, optiAB=optiAB)
             jeu.joue(meilleur_coup)
         else:
             jeu.joue(random.choice(jeu.coupsPossibles()))
@@ -28,13 +30,15 @@ def partieRM(p: int, eval: Callable[[Awale, int], int]) -> list[int]:
     elif jeu.score[0] < jeu.score[1]:
         return [1, jeu.score[0], jeu.score[1], jeu.tours]
 
-def simulationRM(k: int, p: int, eval: Callable[[Awale, int], int]) -> list[int]:
+def simulationRM(k: int, p: int, eval: Callable[[Awale, int], int], optiAB: bool) -> list[int]:
     """Calcule les simulations de jeu
     
     :param k: Nombre de simulation à faire
     :type k: int
     :param p: Profondeur de la recherche dans un arbre MinMax
     :type p: int
+    :param optiAB: Utiliser Alpha-Bêta
+    :type optiAB: bool
     :param eval: Fonction d'évaluation à utiliser
     :type eval: Callable[[Awale,int],int]
     """
@@ -42,7 +46,7 @@ def simulationRM(k: int, p: int, eval: Callable[[Awale, int], int]) -> list[int]
     res = [0, 0, 0, 0, 0, 0, 0] # [victoire 1, victoire 2, score moyen 1, score moyen 2, tours moyen, tours moyen victoire, tours moyen defaites, temps d'exécution (append après)]
 
     for i in range(k):
-        partie = partieRM(p, eval)
+        partie = partieRM(p, eval, optiAB)
 
         if partie is not None:
             res[partie[0]] += 1
@@ -54,15 +58,15 @@ def simulationRM(k: int, p: int, eval: Callable[[Awale, int], int]) -> list[int]
     for i in range(2, 5):
         res[i] = res[i] / k
 
-    res[5] = res[5] / res[0]
-    res[6] = res[6] / (res[1] if res[i] != 0 else 1)
+    res[5] = res[5] / (res[0] if res[0] != 0 else 1)
+    res[6] = res[6] / (res[1] if res[1] != 0 else 1)
 
     total = time.time() - debut
     res.append(total)
 
     return res
 
-def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale, int], int], optiAB: bool = True, complet: bool = False) -> None:
+def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale, int], int], optiAB: bool = True) -> None:
     """Permet d'extraire des données
 
     Extrait les données au format JSON (`..data/resultat.json`), de simulation de parties entre un joueur aléatoire et l'IA MinMax
@@ -81,7 +85,7 @@ def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale
     else:
         opti = "aucune"
 
-    res = simulationRM(nbr_sim, profondeur, fct_eval)
+    res = simulationRM(nbr_sim, profondeur, fct_eval, optiAB)
 
     chemin_fichier = '../data/resultat.json'
 
@@ -117,3 +121,8 @@ def extractMinmaxRandom(nbr_sim: int, profondeur: int, fct_eval: Callable[[Awale
 
     with open(chemin_fichier, 'w') as fichier:
         json.dump(data, fichier, indent=4)
+
+for b in [False, True]:
+    for i in range(1, 6):
+        for fonc in [fct_evalution.evaluation, fct_evalution.rangee, fct_evalution.nbrPrise, fct_evalution.nbrGraine]:
+            extractMinmaxRandom(100, i, fonc, b)

@@ -26,7 +26,7 @@ class Awale(object):
             self.score[0] += sum(self.plateau[:6])
             self.score[1] += sum(self.plateau[6:])
             self.fin = True
-        elif self.joueur[0] >= 25 or self.joueur[1] >= 25:
+        elif self.score[0] >= 25 or self.score[1] >= 25:
             self.fin = True
         if (self.fin == True) and printIt:
             print("Gagnant:","Joueur 1" if self.score[0] > self.score[1] else "Joueur 2",

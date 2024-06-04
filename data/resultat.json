@@ -238,5 +238,446 @@
             "toursVictoireIA": 117.12449799196787,
             "toursDefaiteIA": 182.0
         }
+    },
+    {
+        "simID": 13,
+        "date": "04-06-2024 21:58:59",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "evaluation",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 0.8016104698181152,
+        "temps_format": "0:00:00.801610",
+        "resultat": {
+            "minmaxVictoire": 97,
+            "randomVictoire": 2,
+            "reussite": 97.0,
+            "minmaxScore": 35.03,
+            "randomScore": 2.73,
+            "tours": 89.15,
+            "toursMinmax": 89.80412371134021,
+            "toursRandom": 102.0
+        }
+    },
+    {
+        "simID": 14,
+        "date": "04-06-2024 21:59:00",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "rangee",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 0.7280972003936768,
+        "temps_format": "0:00:00.728097",
+        "resultat": {
+            "minmaxVictoire": 100,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "minmaxScore": 45.21,
+            "randomScore": 1.07,
+            "tours": 77.0,
+            "toursMinmax": 77.0,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 15,
+        "date": "04-06-2024 21:59:01",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrPrise",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 0.9995312690734863,
+        "temps_format": "0:00:00.999531",
+        "resultat": {
+            "minmaxVictoire": 97,
+            "randomVictoire": 2,
+            "reussite": 97.0,
+            "minmaxScore": 30.88,
+            "randomScore": 7.61,
+            "tours": 103.55,
+            "toursMinmax": 104.50515463917526,
+            "toursRandom": 109.0
+        }
+    },
+    {
+        "simID": 16,
+        "date": "04-06-2024 21:59:02",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrGraine",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 1.0236830711364746,
+        "temps_format": "0:00:01.023683",
+        "resultat": {
+            "minmaxVictoire": 96,
+            "randomVictoire": 3,
+            "reussite": 96.0,
+            "minmaxScore": 30.32,
+            "randomScore": 8.84,
+            "tours": 109.09,
+            "toursMinmax": 107.86458333333333,
+            "toursRandom": 184.66666666666666
+        }
+    },
+    {
+        "simID": 17,
+        "date": "04-06-2024 21:59:21",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "evaluation",
+        "profondeur": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 18.90723752975464,
+        "temps_format": "0:00:18.907238",
+        "resultat": {
+            "minmaxVictoire": 70,
+            "randomVictoire": 30,
+            "reussite": 70.0,
+            "minmaxScore": 33.96,
+            "randomScore": 11.36,
+            "tours": 476.48,
+            "toursMinmax": 170.25714285714287,
+            "toursRandom": 1191.0
+        }
+    },
+    {
+        "simID": 18,
+        "date": "04-06-2024 22:00:52",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "evaluation",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 0.8015224933624268,
+        "temps_format": "0:00:00.801522",
+        "resultat": {
+            "minmaxVictoire": 100,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "minmaxScore": 33.21,
+            "randomScore": 2.05,
+            "tours": 89.6,
+            "toursMinmax": 89.6,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 19,
+        "date": "04-06-2024 22:00:53",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "rangee",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 0.7209455966949463,
+        "temps_format": "0:00:00.720946",
+        "resultat": {
+            "minmaxVictoire": 99,
+            "randomVictoire": 1,
+            "reussite": 99.0,
+            "minmaxScore": 44.43,
+            "randomScore": 1.56,
+            "tours": 75.89,
+            "toursMinmax": 75.1010101010101,
+            "toursRandom": 154.0
+        }
+    },
+    {
+        "simID": 20,
+        "date": "04-06-2024 22:00:54",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrPrise",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 1.0060455799102783,
+        "temps_format": "0:00:01.006046",
+        "resultat": {
+            "minmaxVictoire": 98,
+            "randomVictoire": 1,
+            "reussite": 98.0,
+            "minmaxScore": 30.39,
+            "randomScore": 7.21,
+            "tours": 93.89,
+            "toursMinmax": 94.29591836734694,
+            "toursRandom": 148.0
+        }
+    },
+    {
+        "simID": 21,
+        "date": "04-06-2024 22:00:55",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrGraine",
+        "profondeur": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 0.9356462955474854,
+        "temps_format": "0:00:00.935646",
+        "resultat": {
+            "minmaxVictoire": 98,
+            "randomVictoire": 1,
+            "reussite": 98.0,
+            "minmaxScore": 30.7,
+            "randomScore": 7.1,
+            "tours": 97.89,
+            "toursMinmax": 99.13265306122449,
+            "toursRandom": 74.0
+        }
+    },
+    {
+        "simID": 22,
+        "date": "04-06-2024 22:01:15",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "evaluation",
+        "profondeur": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 20.33133816719055,
+        "temps_format": "0:00:20.331338",
+        "resultat": {
+            "minmaxVictoire": 71,
+            "randomVictoire": 29,
+            "reussite": 71.0,
+            "minmaxScore": 33.94,
+            "randomScore": 10.43,
+            "tours": 508.91,
+            "toursMinmax": 169.67605633802816,
+            "toursRandom": 1339.448275862069
+        }
+    },
+    {
+        "simID": 23,
+        "date": "04-06-2024 22:01:32",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "rangee",
+        "profondeur": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 16.318325996398926,
+        "temps_format": "0:00:16.318326",
+        "resultat": {
+            "minmaxVictoire": 0,
+            "randomVictoire": 100,
+            "reussite": 0.0,
+            "minmaxScore": 1.55,
+            "randomScore": 26.94,
+            "tours": 334.96,
+            "toursMinmax": 0.0,
+            "toursRandom": 334.96
+        }
+    },
+    {
+        "simID": 24,
+        "date": "04-06-2024 22:02:19",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrPrise",
+        "profondeur": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 47.15122938156128,
+        "temps_format": "0:00:47.151229",
+        "resultat": {
+            "minmaxVictoire": 10,
+            "randomVictoire": 90,
+            "reussite": 10.0,
+            "minmaxScore": 6.98,
+            "randomScore": 25.61,
+            "tours": 1064.44,
+            "toursMinmax": 234.4,
+            "toursRandom": 1156.6666666666667
+        }
+    },
+    {
+        "simID": 25,
+        "date": "04-06-2024 22:02:55",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrGraine",
+        "profondeur": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 35.852131366729736,
+        "temps_format": "0:00:35.852131",
+        "resultat": {
+            "minmaxVictoire": 11,
+            "randomVictoire": 89,
+            "reussite": 11.0,
+            "minmaxScore": 9.25,
+            "randomScore": 24.85,
+            "tours": 810.73,
+            "toursMinmax": 307.72727272727275,
+            "toursRandom": 872.8988764044943
+        }
+    },
+    {
+        "simID": 26,
+        "date": "04-06-2024 22:03:13",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "evaluation",
+        "profondeur": 3,
+        "nbrSimulation": 100,
+        "temps_sec": 17.97883653640747,
+        "temps_format": "0:00:17.978837",
+        "resultat": {
+            "minmaxVictoire": 99,
+            "randomVictoire": 1,
+            "reussite": 99.0,
+            "minmaxScore": 36.37,
+            "randomScore": 1.53,
+            "tours": 85.69,
+            "toursMinmax": 84.85858585858585,
+            "toursRandom": 168.0
+        }
+    },
+    {
+        "simID": 27,
+        "date": "04-06-2024 22:03:26",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "rangee",
+        "profondeur": 3,
+        "nbrSimulation": 100,
+        "temps_sec": 13.878400564193726,
+        "temps_format": "0:00:13.878401",
+        "resultat": {
+            "minmaxVictoire": 100,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "minmaxScore": 46.96,
+            "randomScore": 0.63,
+            "tours": 58.98,
+            "toursMinmax": 58.98,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 28,
+        "date": "04-06-2024 22:03:44",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrPrise",
+        "profondeur": 3,
+        "nbrSimulation": 100,
+        "temps_sec": 17.920824766159058,
+        "temps_format": "0:00:17.920825",
+        "resultat": {
+            "minmaxVictoire": 100,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "minmaxScore": 37.04,
+            "randomScore": 0.97,
+            "tours": 78.78,
+            "toursMinmax": 78.78,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 29,
+        "date": "04-06-2024 22:04:02",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrGraine",
+        "profondeur": 3,
+        "nbrSimulation": 100,
+        "temps_sec": 17.181843996047974,
+        "temps_format": "0:00:17.181844",
+        "resultat": {
+            "minmaxVictoire": 100,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "minmaxScore": 38.77,
+            "randomScore": 1.69,
+            "tours": 74.28,
+            "toursMinmax": 74.28,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 30,
+        "date": "04-06-2024 22:10:34",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "evaluation",
+        "profondeur": 4,
+        "nbrSimulation": 100,
+        "temps_sec": 392.9232919216156,
+        "temps_format": "0:06:32.923292",
+        "resultat": {
+            "minmaxVictoire": 73,
+            "randomVictoire": 27,
+            "reussite": 73.0,
+            "minmaxScore": 33.87,
+            "randomScore": 10.4,
+            "tours": 431.73,
+            "toursMinmax": 162.6164383561644,
+            "toursRandom": 1159.3333333333333
+        }
+    },
+    {
+        "simID": 31,
+        "date": "04-06-2024 22:17:15",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "rangee",
+        "profondeur": 4,
+        "nbrSimulation": 100,
+        "temps_sec": 400.74073576927185,
+        "temps_format": "0:06:40.740736",
+        "resultat": {
+            "minmaxVictoire": 0,
+            "randomVictoire": 100,
+            "reussite": 0.0,
+            "minmaxScore": 0.53,
+            "randomScore": 28.25,
+            "tours": 338.2,
+            "toursMinmax": 0.0,
+            "toursRandom": 338.2
+        }
+    },
+    {
+        "simID": 32,
+        "date": "04-06-2024 22:33:52",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrPrise",
+        "profondeur": 4,
+        "nbrSimulation": 100,
+        "temps_sec": 996.4960248470306,
+        "temps_format": "0:16:36.496025",
+        "resultat": {
+            "minmaxVictoire": 18,
+            "randomVictoire": 82,
+            "reussite": 18.0,
+            "minmaxScore": 10.53,
+            "randomScore": 23.4,
+            "tours": 722.34,
+            "toursMinmax": 234.11111111111111,
+            "toursRandom": 829.5121951219512
+        }
+    },
+    {
+        "simID": 33,
+        "date": "04-06-2024 22:45:44",
+        "ia": "MinMax",
+        "optimisation": "aucune",
+        "fonction": "nbrGraine",
+        "profondeur": 4,
+        "nbrSimulation": 100,
+        "temps_sec": 712.7660303115845,
+        "temps_format": "0:11:52.766030",
+        "resultat": {
+            "minmaxVictoire": 12,
+            "randomVictoire": 88,
+            "reussite": 12.0,
+            "minmaxScore": 8.14,
+            "randomScore": 24.05,
+            "tours": 745.42,
+            "toursMinmax": 283.0,
+            "toursRandom": 808.4772727272727
+        }
     }
 ]
