@@ -5,7 +5,7 @@ import random, math
 
 
 # Structure des données stockées dans chaque Noeud
-#  {"partie": jeu, "simTot": 1, "simVic": 0} : dict[Awale, int, int]
+#  {"partie": jeu, "simTot": 1, "simVic": 0, "dernierCoup"} : dict[Awale, int, int, int]
 
 global p_exploration
 p_exploration = math.sqrt(2) # Valeur théorique (meilleur résultat avec une valeur expérimentale)
@@ -23,13 +23,15 @@ class Noeud(object):
         self.pere = parent
         self.donnees: dict = donnees
 
-    def ajouteNoeud(self, donnees: dict) -> None:
+    def ajouteNoeud(self, donnees: dict):
         """Ajoute un fils au noeud
 
         :param donnees: Dictionnaire contenant les données du neoud
         :type donnees: dict
         """
-        self.fils.append(Arbre(donnees=donnees, parent=self))
+        enfant = Arbre(donnees=donnees, parent=self)
+        self.fils.append(enfant)
+        return enfant
 
 
 def UCT(a: Noeud, fils: Noeud) -> int:
@@ -44,7 +46,7 @@ def UCT(a: Noeud, fils: Noeud) -> int:
     """
     return (fils.donnees["simVic"] / fils.donnees["simTot"]) + (p_exploration * math.sqrt(math.log2(a.donnees["simTot"]) / fils.donnees["simTot"]))
 
-def selection(a: Noeud, f: Callable[[Noeud, Noeud], int]) -> Tuple[Noeud, int]:
+def selection(a: Noeud) -> Tuple[Noeud, int]:
     """Phase de sélection dans l'algorithme de Monte-Carlo
 
     :param a: L'arbre sur lequel on recherche
@@ -58,30 +60,44 @@ def selection(a: Noeud, f: Callable[[Noeud, Noeud], int]) -> Tuple[Noeud, int]:
     score = -1.0
     while choix.fils != []:
         for fils in a.fils:
-            scoreFils = f(a, fils)
+            scoreFils = UCT(a, fils)
             if scoreFils > score:
                 score = scoreFils
                 choix = fils
-        return choix, score
+    return choix, score
+
+def epsilonSelection(a: Noeud, epsilon: int) -> Tuple[Noeud, int]:
+    choix = a
+    score = -1.0
+    while choix.fils != []:
+        r = random.random()
+        if r <= epsilon:
+            choix = random.choice(a.coupsPossibles)
+        else:
+            for fils in a.fils:
+                scoreFils = fils.donnees["simVic"] / fils.donnees["simTot"]
+                if scoreFils > score:
+                    score = scoreFils
+                    choix = fils
+    return choix, score
 
 # A revoir
-def expansion(a: Noeud) -> int:
+def expansion(a: Noeud) -> Noeud:
     """Permet de créer un nouveau fils si c'est possible
 
     :param a: Noeud auquel on rajoute un fils
     :type a: Noeud
-    :return: Le dernier coup qui a été joué, -1 si aucun coup n'a été joué
-    :rtype: int 
+    :return: Le fils ajouté
+    :rtype: Noeud
     """
     if (a.donnees["partie"].fin):
-        return -1
+        return a
     else:
         copie = copy.deepcopy(a.donnees["partie"])
         coup = random.choice(copie.coupsPossibles)
         copie.joue(coup)
         data = {"partie": copie, "simTot": 0, "simVic": 0}
         a.ajouteNoeud(data)
-        return coup
 
 
 def simulationRandom(a: Noeud) -> int:
@@ -98,20 +114,43 @@ def simulationRandom(a: Noeud) -> int:
         copie.joue(coup)
     
     if copie.score[0] > copie.score[1]:
-        return 0
+        return a, 1
     else:
-        return 1
+        return a, 0
 
 
-def retropopagation(a: Noeud, victoire: bool) -> None:
+def retropopagation(a: Noeud, victoire: int) -> None:
     """Propage la valeur de la simulation aux parents du noeud
 
     :param a: Noeud duquel on part pour propager
     :type a: Noeud
     :param victoire: Indique s'il y a eu une victoire au bout de la simulation
-    :type victoire: bool
+    :type victoire: int
     """
     while a.pere is not None:
         a.donnees["simTot"] += 1
-        a.donnees["simVic"] += (1 if victoire else 0)
+        a.donnees["simVic"] += victoire
         a = a.pere
+
+def meilleurFils(a: Noeud) -> int:
+    choix = -1
+    score = -1
+    for fils in a.fils:
+        scoreFils = fils.donnees["simVic"] / fils.donnees["simTot"]
+        if scoreFils > score:
+            choix = "meilleur coup"
+            score = scoreFils
+    return choix, score
+
+def monteCarlo(jeu: Awale, repetition: int, uct: Optional[bool] = True) -> int:
+    arbre = Noeud({"partie": jeu, "simTot": 0, "simVic": 0})
+    for i in range(0, repetition):
+        if uct:
+            positionArbre = selectoin(arbre)
+        else:
+            positionArbre = epsilonSelection(arbre)
+
+        noeud, victoire = simualation(expansion(positionArbre))
+        retropropagation(noeud, victoire)
+
+    return meilleurFils(arbre)[0]

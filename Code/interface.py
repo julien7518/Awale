@@ -57,8 +57,8 @@ def joueGui() -> None:
     print("In progress...")
 
 
-@cli.command("shell_IA")
-def joueShell() -> None:
+@cli.command("shell")
+def joueShell(type: str) -> None:
     """Jouer dans le terminal.
 
     Permet de jouer à l'awale dans le terminal, avec une interface simple.
@@ -67,7 +67,7 @@ def joueShell() -> None:
     """
     jeu = Awale()
     while not jeu.fin:
-        if jeu.joueur == 0:
+        if jeu.joueur == 0 or type is None:
             jeu.affichePlateau()
             try:
                 case = input("Entrez le trou choisi : ") 
@@ -81,9 +81,15 @@ def joueShell() -> None:
                     print("Tu t'es trompé de trou chef ! Fais attention la prochaine fois")
             except ValueError:
                 print("Veuillez saisir un nombre entre 1 et 12")
-        else: 
+        else:
             print("Tour de l'IA...")
-            meilleur_coup, _ = minmax.minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=fct_evaluation.evaluation)
+            if type == "minmax":
+                meilleur_coup, _ = minmax.minMax(jeu, profondeur=4, alpha=-sys.maxsize, beta=sys.maxsize, joueuramaximiser=True, eval=fct_evaluation.evaluation)
+            elif type == "mcts":
+                meilleur_coup = random.choice(jeu.coupsPossibles())
+            elif type == "random":
+                meilleur_coup = random.choice(jeu.coupsPossibles())
+
             jeu.joue(meilleur_coup)
             print(f"L'IA a joué dans le trou {meilleur_coup + 1}") 
 

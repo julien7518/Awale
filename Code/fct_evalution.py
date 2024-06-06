@@ -34,6 +34,25 @@ def rangee(jeu: Awale, joueur_actuel: int) -> int:
 
     return 2 * evaluation(jeu, joueur_actuel) + (position[joueur_actuel] - position[1 - joueur_actuel])
 
+def rangeeInverse(jeu: Awale, joueur_actuel: int) -> int:
+    """Fonction d'évaluation sur la position n°2
+
+    Prends en compte la somme des graines qu'il y a dans le camps adverse
+    
+    :param jeu: Partie d'awale à analyser
+    :type jeu: Awale
+    :param joueur_actuel: Joueur dont c'est le tour
+    :type joueur_actuel: int
+    :return: Score du plateau actuel
+    :rtype: int
+    """
+    position = [0, 0]
+    for nbr in jeu.plateau[:6]:
+        position[0] += nbr
+    for nbr in jeu.plateau[6:]:
+        position[1] += nbr
+
+    return 2 * evaluation(jeu, joueur_actuel) + (position[1 - joueur_actuel] - position[joueur_actuel])
 
 def nbrPrise(jeu: Awale, joueur_actuel: int) -> int:
     """Première fonction d'évaluation
