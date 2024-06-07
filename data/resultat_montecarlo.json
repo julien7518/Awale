@@ -1,0 +1,344 @@
+[
+    {
+        "simID": 1,
+        "date": "07-06-2024 13:54:51",
+        "ia": "Monte Carlo",
+        "repetition": 2,
+        "nbrSimulation": 1,
+        "temps_sec": 2.705047130584717,
+        "temps_format": "0:00:02.705047",
+        "resultat": {
+            "montecarloVictoire": 1,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "montecarloScore": 25.0,
+            "randomScore": 16.0,
+            "tours": 261.0,
+            "toursMonteCarlo": 261.0,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 2,
+        "date": "07-06-2024 13:59:28",
+        "ia": "Monte Carlo",
+        "repetition": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 15.521535158157349,
+        "temps_format": "0:00:15.521535",
+        "resultat": {
+            "montecarloVictoire": 62,
+            "randomVictoire": 38,
+            "reussite": 62.0,
+            "montecarloScore": 23.72,
+            "randomScore": 19.4,
+            "tours": 275.43,
+            "toursMonteCarlo": 264.5,
+            "toursRandom": 293.2631578947368
+        }
+    },
+    {
+        "simID": 3,
+        "date": "07-06-2024 14:00:10",
+        "ia": "Monte Carlo",
+        "repetition": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 41.799065351486206,
+        "temps_format": "0:00:41.799065",
+        "resultat": {
+            "montecarloVictoire": 63,
+            "randomVictoire": 37,
+            "reussite": 63.0,
+            "montecarloScore": 24.22,
+            "randomScore": 19.1,
+            "tours": 280.26,
+            "toursMonteCarlo": 276.12698412698415,
+            "toursRandom": 287.2972972972973
+        }
+    },
+    {
+        "simID": 4,
+        "date": "07-06-2024 14:13:41",
+        "ia": "Monte Carlo",
+        "repetition": 1,
+        "nbrSimulation": 100,
+        "temps_sec": 16.642210483551025,
+        "temps_format": "0:00:16.642210",
+        "resultat": {
+            "montecarloVictoire": 74,
+            "randomVictoire": 26,
+            "reussite": 74.0,
+            "montecarloScore": 25.24,
+            "randomScore": 17.93,
+            "tours": 277.88,
+            "toursMonteCarlo": 280.2027027027027,
+            "toursRandom": 271.2692307692308
+        }
+    },
+    {
+        "simID": 5,
+        "date": "07-06-2024 14:14:21",
+        "ia": "Monte Carlo",
+        "repetition": 2,
+        "nbrSimulation": 100,
+        "temps_sec": 40.4434130191803,
+        "temps_format": "0:00:40.443413",
+        "resultat": {
+            "montecarloVictoire": 64,
+            "randomVictoire": 36,
+            "reussite": 64.0,
+            "montecarloScore": 24.65,
+            "randomScore": 19.28,
+            "tours": 276.83,
+            "toursMonteCarlo": 262.71875,
+            "toursRandom": 301.9166666666667
+        }
+    },
+    {
+        "simID": 6,
+        "date": "07-06-2024 14:30:10",
+        "ia": "Monte Carlo",
+        "repetition": 3,
+        "nbrSimulation": 100,
+        "temps_sec": 60.95674014091492,
+        "temps_format": "0:01:00.956740",
+        "resultat": {
+            "montecarloVictoire": 65,
+            "randomVictoire": 35,
+            "reussite": 65.0,
+            "montecarloScore": 24.19,
+            "randomScore": 19.04,
+            "tours": 266.66,
+            "toursMonteCarlo": 265.5230769230769,
+            "toursRandom": 268.77142857142854
+        }
+    },
+    {
+        "simID": 7,
+        "date": "07-06-2024 14:32:58",
+        "ia": "Monte Carlo",
+        "repetition": 4,
+        "nbrSimulation": 100,
+        "temps_sec": 66.26213812828064,
+        "temps_format": "0:01:06.262138",
+        "resultat": {
+            "montecarloVictoire": 62,
+            "randomVictoire": 38,
+            "reussite": 62.0,
+            "montecarloScore": 23.47,
+            "randomScore": 19.51,
+            "tours": 275.58,
+            "toursMonteCarlo": 271.9193548387097,
+            "toursRandom": 281.55263157894734
+        }
+    },
+    {
+        "simID": 8,
+        "date": "07-06-2024 14:34:25",
+        "ia": "Monte Carlo",
+        "repetition": 5,
+        "nbrSimulation": 100,
+        "temps_sec": 87.04971837997437,
+        "temps_format": "0:01:27.049718",
+        "resultat": {
+            "montecarloVictoire": 54,
+            "randomVictoire": 46,
+            "reussite": 54.0,
+            "montecarloScore": 22.86,
+            "randomScore": 20.65,
+            "tours": 277.46,
+            "toursMonteCarlo": 264.85185185185185,
+            "toursRandom": 292.2608695652174
+        }
+    },
+    {
+        "simID": 9,
+        "date": "07-06-2024 14:36:03",
+        "ia": "Monte Carlo",
+        "repetition": 6,
+        "nbrSimulation": 100,
+        "temps_sec": 98.42135906219482,
+        "temps_format": "0:01:38.421359",
+        "resultat": {
+            "montecarloVictoire": 54,
+            "randomVictoire": 46,
+            "reussite": 54.0,
+            "montecarloScore": 23.48,
+            "randomScore": 19.14,
+            "tours": 267.27,
+            "toursMonteCarlo": 237.92592592592592,
+            "toursRandom": 301.7173913043478
+        }
+    },
+    {
+        "simID": 10,
+        "date": "07-06-2024 14:39:44",
+        "ia": "Monte Carlo",
+        "repetition": 7,
+        "nbrSimulation": 100,
+        "temps_sec": 134.39960432052612,
+        "temps_format": "0:02:14.399604",
+        "resultat": {
+            "montecarloVictoire": 64,
+            "randomVictoire": 36,
+            "reussite": 64.0,
+            "montecarloScore": 23.38,
+            "randomScore": 19.8,
+            "tours": 287.36,
+            "toursMonteCarlo": 290.40625,
+            "toursRandom": 281.94444444444446
+        }
+    },
+    {
+        "simID": 11,
+        "date": "07-06-2024 14:42:22",
+        "ia": "Monte Carlo",
+        "repetition": 8,
+        "nbrSimulation": 100,
+        "temps_sec": 157.9746813774109,
+        "temps_format": "0:02:37.974681",
+        "resultat": {
+            "montecarloVictoire": 52,
+            "randomVictoire": 48,
+            "reussite": 52.0,
+            "montecarloScore": 23.03,
+            "randomScore": 20.41,
+            "tours": 272.43,
+            "toursMonteCarlo": 262.0192307692308,
+            "toursRandom": 283.7083333333333
+        }
+    },
+    {
+        "simID": 12,
+        "date": "07-06-2024 14:45:27",
+        "ia": "Monte Carlo",
+        "repetition": 9,
+        "nbrSimulation": 100,
+        "temps_sec": 185.28263211250305,
+        "temps_format": "0:03:05.282632",
+        "resultat": {
+            "montecarloVictoire": 55,
+            "randomVictoire": 45,
+            "reussite": 55.00000000000001,
+            "montecarloScore": 23.59,
+            "randomScore": 19.97,
+            "tours": 294.66,
+            "toursMonteCarlo": 277.8909090909091,
+            "toursRandom": 315.15555555555557
+        }
+    },
+    {
+        "simID": 13,
+        "date": "07-06-2024 15:16:15",
+        "ia": "Monte Carlo",
+        "repetition": 1,
+        "nbrSimulation": 1,
+        "temps_sec": 0.09994721412658691,
+        "temps_format": "0:00:00.099947",
+        "resultat": {
+            "montecarloVictoire": 0,
+            "randomVictoire": 1,
+            "reussite": 0.0,
+            "montecarloScore": 13.0,
+            "randomScore": 35.0,
+            "tours": 168.0,
+            "toursMonteCarlo": 0.0,
+            "toursRandom": 168.0
+        }
+    },
+    {
+        "simID": 14,
+        "date": "07-06-2024 15:23:24",
+        "ia": "Monte Carlo",
+        "repetition": 1,
+        "nbrSimulation": 1,
+        "temps_sec": 0.13434386253356934,
+        "temps_format": "0:00:00.134344",
+        "resultat": {
+            "montecarloVictoire": 0,
+            "randomVictoire": 1,
+            "reussite": 0.0,
+            "montecarloScore": 19.0,
+            "randomScore": 29.0,
+            "tours": 272.0,
+            "toursMonteCarlo": 0.0,
+            "toursRandom": 272.0
+        }
+    },
+    {
+        "simID": 15,
+        "date": "07-06-2024 15:23:29",
+        "ia": "Monte Carlo",
+        "repetition": 1,
+        "nbrSimulation": 2,
+        "temps_sec": 0.3118619918823242,
+        "temps_format": "0:00:00.311862",
+        "resultat": {
+            "montecarloVictoire": 2,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "montecarloScore": 27.5,
+            "randomScore": 15.5,
+            "tours": 241.0,
+            "toursMonteCarlo": 241.0,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 16,
+        "date": "07-06-2024 15:23:34",
+        "ia": "Monte Carlo",
+        "repetition": 2,
+        "nbrSimulation": 2,
+        "temps_sec": 0.7512390613555908,
+        "temps_format": "0:00:00.751239",
+        "resultat": {
+            "montecarloVictoire": 1,
+            "randomVictoire": 1,
+            "reussite": 50.0,
+            "montecarloScore": 23.0,
+            "randomScore": 19.5,
+            "tours": 313.5,
+            "toursMonteCarlo": 291.0,
+            "toursRandom": 336.0
+        }
+    },
+    {
+        "simID": 17,
+        "date": "07-06-2024 15:25:19",
+        "ia": "Monte Carlo",
+        "repetition": 2,
+        "nbrSimulation": 2,
+        "temps_sec": 0.7932837009429932,
+        "temps_format": "0:00:00.793284",
+        "resultat": {
+            "montecarloVictoire": 2,
+            "randomVictoire": 0,
+            "reussite": 100.0,
+            "montecarloScore": 25.0,
+            "randomScore": 23.0,
+            "tours": 356.5,
+            "toursMonteCarlo": 356.5,
+            "toursRandom": 0.0
+        }
+    },
+    {
+        "simID": 18,
+        "date": "07-06-2024 15:28:41",
+        "ia": "Monte Carlo",
+        "repetition": 1,
+        "nbrSimulation": 1000,
+        "temps_sec": 165.40144276618958,
+        "temps_format": "0:02:45.401443",
+        "resultat": {
+            "montecarloVictoire": 609,
+            "randomVictoire": 391,
+            "reussite": 60.9,
+            "montecarloScore": 23.831,
+            "randomScore": 19.296,
+            "tours": 270.42,
+            "toursMonteCarlo": 262.8407224958949,
+            "toursRandom": 282.2250639386189
+        }
+    }
+]
